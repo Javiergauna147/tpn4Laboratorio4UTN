@@ -1,15 +1,31 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import './productos.css';
-import intrumentos from '../../data/instrumentos.json'
 import ProductCard from '../../components/productCard/productCard';
+import { getAllInstrumentos } from './productosApi';
 
 
 function Productos() {
-  let instrumentos = intrumentos.instrumentos;
+  const [instrumentos, setInstrumentos] = useState<any[]>([]);
+  
+    useEffect(() => {
+      getPlatos();
+    }, []);
+
+
+  const getPlatos = async () => {
+    let datos = await getAllInstrumentos();
+    setInstrumentos(datos.data);
+  }
+
+
+
+  console.log("aca todo pa");
   console.log(instrumentos);
-  const items = instrumentos.map(instrumento => {
-    return (
-      <ProductCard
+
+  return (
+    <>
+      {instrumentos.map(instrumento => {
+        return <ProductCard
         id = {instrumento.id}
         modelo={instrumento.modelo}
         marca = {instrumento.marca}
@@ -20,12 +36,7 @@ function Productos() {
         cantidadVendida = {instrumento.cantidadVendida}
         descripcion = {instrumento.descripcion}
       />
-    );
-  })
-
-  return (
-    <>
-      {items}
+      })}
     </>
   );
 }

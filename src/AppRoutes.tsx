@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { Container, Navbar, Row } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import App from './App';
 import DondeEstamos from "./pages/dondeEstamos/dondeEstamos";
